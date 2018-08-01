@@ -105,6 +105,16 @@ if(NOT METIS_LIBRARY)
     )
 endif()
 
+# setup eigen
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
+# setup Qt5
+# Instruct CMake to run moc automatically when needed
+set(CMAKE_AUTOMOC ON)
+# Create code from a list of Qt designer ui files
+set(CMAKE_AUTOUIC ON)
+# Find the QtWidgets library
+find_package(Qt5Widgets CONFIG REQUIRED)
   
 # required by OpenMesh
 set_property(
@@ -132,5 +142,7 @@ target_link_libraries(sparam
   ${OPENMESH_LIBRARIES}
   ${METIS_LIBRARY}
   ${CMAKE_DL_LIBS}
+  Eigen3::Eigen
+  Qt5::Widgets
   )
 
